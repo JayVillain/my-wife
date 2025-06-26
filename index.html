@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="assets/images/favicon.png"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,10 +17,11 @@
             <p class="subtitle">Dari Lensa Hati [Nama Anda]</p>
             <nav>
                 <ul>
-                    <li><a href="#hero">Beranda</a></li>
-                    <li><a href="#gallery">Pesonamu</a></li>
-                    <li><a href="#about">Tentang Kamu</a></li>
-                    <li><a href="#music">Melodi</a></li>
+                    <li><a href="#hero" data-nav-text="Beranda">Beranda</a></li>
+                    <li><a href="#gallery" data-nav-text="Pesonamu">Pesonamu</a></li>
+                    <li><a href="#about" data-nav-text="Tentang Kamu">Tentang Kamu</a></li>
+                    <li><a href="#heart-message" data-nav-text="Kata Hati">Kata Hati</a></li>
+                    <li><a href="#music" data-nav-text="Melodi">Melodi</a></li>
                 </ul>
             </nav>
         </div>
@@ -27,10 +29,12 @@
 
     <main>
         <section id="hero" class="hero-section">
-            <img src="assets/images/her_main_portrait.jpg" alt="Foto Terbaik [Nama Pasangan Anda]" class="hero-image">
+            <div class="hero-parallax-bg">
+                <img src="assets/images/her_main_portrait.jpg" alt="Foto Terbaik [Nama Pasangan Anda]" class="hero-image" data-speed="0.2">
+            </div>
             <div class="hero-overlay"></div>
             <div class="hero-text-content">
-                <h2>Cinta dalam Setiap Bingkai</h2>
+                <h2><span id="typed-text"></span></h2>
                 <p>Setiap bidik adalah bisikan hatiku, setiap cahaya adalah cerminan jiwamu.</p>
             </div>
         </section>
@@ -38,53 +42,60 @@
         <section id="gallery" class="gallery-section">
             <h2 class="section-title">Galeri Pesonamu</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="assets/images/gallery/photo_1.jpg" alt="[Deskripsi singkat foto 1]">
-                    <div class="message-overlay">
-                        <p class="love-message">"Senyummu, melodi paling indah yang pernah kudengar."</p>
+                <div class="gallery-item fade-in-section" data-index="0" data-src="assets/images/gallery/photo_1.jpg" data-message="Senyummu, melodi paling indah yang pernah kudengar. Itu selalu menjadi sumber kebahagiaan terbesarku.">
+                    <img src="assets/images/gallery/photo_1.jpg" alt="Potret Senyum">
+                    <div class="message-hover-overlay">
+                        <p class="love-message-hover">Sentuh untuk pesanku...</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="assets/images/gallery/photo_2.jpg" alt="[Deskripsi singkat foto 2]">
-                    <div class="message-overlay">
-                        <p class="love-message">"Di matamu, kutemukan seluruh duniaku."</p>
+                <div class="gallery-item fade-in-section" data-index="1" data-src="assets/images/gallery/photo_2.jpg" data-message="Di matamu, kutemukan seluruh duniaku. Ada cerita tak berujung yang selalu ingin kubaca.">
+                    <img src="assets/images/gallery/photo_2.jpg" alt="Potret Mata">
+                    <div class="message-hover-overlay">
+                        <p class="love-message-hover">Sentuh untuk pesanku...</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="assets/images/gallery/photo_3.jpg" alt="[Deskripsi singkat foto 3]">
-                    <div class="message-overlay">
-                        <p class="love-message">"Setiap gerakmu adalah puisi yang tak pernah usai."</p>
+                <div class="gallery-item fade-in-section" data-index="2" data-src="assets/images/gallery/photo_3.jpg" data-message="Setiap gerakmu adalah puisi yang tak pernah usai. Keanggunanmu selalu membuatku terpukau.">
+                    <img src="assets/images/gallery/photo_3.jpg" alt="Potret Gaya">
+                    <div class="message-hover-overlay">
+                        <p class="love-message-hover">Sentuh untuk pesanku...</p>
                     </div>
                 </div>
-                 <div class="gallery-item">
-                    <img src="assets/images/gallery/photo_4.jpg" alt="[Deskripsi singkat foto 4]">
-                    <div class="message-overlay">
-                        <p class="love-message">"Cahayamu menerangi setiap sudut hatiku."</p>
+                <div class="gallery-item fade-in-section" data-index="3" data-src="assets/images/gallery/photo_4.jpg" data-message="Cahayamu menerangi setiap sudut hatiku, bahkan di hari paling gelap sekalipun.">
+                    <img src="assets/images/gallery/photo_4.jpg" alt="Potret Bercahaya">
+                    <div class="message-hover-overlay">
+                        <p class="love-message-hover">Sentuh untuk pesanku...</p>
                     </div>
                 </div>
-                 <div class="gallery-item">
-                    <img src="assets/images/gallery/photo_5.jpg" alt="[Deskripsi singkat foto 5]">
-                    <div class="message-overlay">
-                        <p class="love-message">"Kau adalah inspirasiku, dari setiap sudut pandang."</p>
+                <div class="gallery-item fade-in-section" data-index="4" data-src="assets/images/gallery/photo_5.jpg" data-message="Kau adalah inspirasiku, dari setiap sudut pandang. Kekuatan dan kebaikanmu memotivasiku.">
+                    <img src="assets/images/gallery/photo_5.jpg" alt="Potret Inspirasi">
+                    <div class="message-hover-overlay">
+                        <p class="love-message-hover">Sentuh untuk pesanku...</p>
                     </div>
                 </div>
-                 <div class="gallery-item">
-                    <img src="assets/images/gallery/photo_6.jpg" alt="[Deskripsi singkat foto 6]">
-                    <div class="message-overlay">
-                        <p class="love-message">"Keindahanmu, sebuah karya seni yang abadi."</p>
+                <div class="gallery-item fade-in-section" data-index="5" data-src="assets/images/gallery/photo_6.jpg" data-message="Keindahanmu, sebuah karya seni yang abadi. Aku bersyukur bisa menjadi pengagum terbesarmu.">
+                    <img src="assets/images/gallery/photo_6.jpg" alt="Potret Cantik">
+                    <div class="message-hover-overlay">
+                        <p class="love-message-hover">Sentuh untuk pesanku...</p>
                     </div>
                 </div>
                 </div>
         </section>
 
-        <section id="about" class="about-section">
+        <section id="about" class="about-section fade-in-section">
             <h2 class="section-title">Tentang Kamu, Dari Sudut Pandangku</h2>
-            <p>Sejak pertama kali aku memegang kameraku dan mengarahkannya padamu, aku tahu ada sesuatu yang istimewa. Bukan hanya tentang bagaimana cahaya jatuh di wajahmu, atau bagaimana setiap posemu terasa alami, tapi juga tentang jiwa yang terpancar dari matamu.</p>
-            <p>Bagiku, kamu bukan hanya sekadar subjek, tapi juga inspirasi tak terbatas. Aku melihat potensi luar biasa dalam dirimu, dan aku percaya bahwa dunia perlu melihat pesonamu ini. Aku sangat bangga denganmu dan akan selalu mendukung setiap langkahmu.</p>
+            <p>Sejak pertama kali aku memegang kameraku dan mengarahkannya padamu, aku tahu ada sesuatu yang istimewa. Bukan hanya tentang bagaimana cahaya jatuh di wajahmu, atau bagaimana setiap posemu terasa alami, tapi juga tentang jiwa yang terpancar dari matamu. Bagiku, kamu bukan hanya sekadar subjek, tapi juga inspirasi tak terbatas. Aku melihat potensi luar biasa dalam dirimu, dan aku percaya bahwa dunia perlu melihat pesonamu ini. Aku sangat bangga denganmu dan akan selalu mendukung setiap langkahmu.</p>
             <p class="signature">— Dengan semua cintaku, [Nama Anda]</p>
         </section>
 
-        <section id="music" class="music-section">
+        <section id="heart-message" class="heart-message-section fade-in-section">
+            <h2 class="section-title">Untukmu, Lebih dari Sekadar Kata</h2>
+            <div class="message-content">
+                <p class="typed-message"></p>
+                <p style="opacity:0;" class="final-paragraph">Setiap detik bersamamu adalah anugerah. Kau adalah impian yang menjadi nyata, alasan di balik setiap senyumku. Aku mencintaimu, lebih dari yang bisa diungkapkan kata-kata.</p>
+            </div>
+        </section>
+
+        <section id="music" class="music-section fade-in-section">
             <h2 class="section-title">Melodi Hatiku untukmu</h2>
             <audio id="background-music" loop>
                 <source src="assets/music/romantic_bgm.mp3" type="audio/mpeg">
@@ -101,6 +112,22 @@
     <footer>
         <p>&copy; 2025 Romansa Abadi untuk [Nama Pasangan Anda]. Dengan Cinta oleh [Nama Anda].</p>
     </footer>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="close-btn">&times;</span>
+            <div class="lightbox-image-wrapper">
+                <img src="" alt="" id="lightbox-image">
+            </div>
+            <p id="lightbox-message" class="lightbox-message"></p>
+            <div class="lightbox-nav">
+                <button id="prev-btn" class="nav-button">&leftarrow;</button>
+                <button id="next-btn" class="nav-button">&rightarrow;</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="back-to-top" class="back-to-top-btn" title="Kembali ke Atas">&#9650;</button>
 
     <script src="script.js"></script>
 </body>
