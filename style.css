@@ -1,19 +1,18 @@
 /* --- GLOBAL STYLES & FONTS --- */
 :root {
     /* Deep Velvet Romance Colors */
-    --color-dark-primary: #1A1A2E; /* Sangat gelap, mendekati navy/ungu gelap */
-    --color-dark-secondary: #2C2C4A; /* Sedikit lebih terang dari primary */
-    --color-text-light: #E0E0E0; /* Krem/abu-abu terang lembut */
-    --color-accent-rose: #C9A7A7; /* Dusty Rose lembut */
-    --color-accent-gold: #D4AF37; /* Soft Gold */
-    --color-accent-green: #B0C4B0; /* Light Sage Green (unused but good option) */
-    --color-header-bg: rgba(26, 26, 46, 0.9); /* Latar header transparan gelap */
-    --color-overlay-dark: rgba(0, 0, 0, 0.7); /* Untuk overlay lightbox/hover */
+    --color-dark-primary: #1A1A2E;
+    --color-dark-secondary: #2C2C4A;
+    --color-text-light: #E0E0E0;
+    --color-accent-rose: #C9A7A7;
+    --color-accent-gold: #D4AF37;
+    --color-header-bg: rgba(26, 26, 46, 0.9);
+    --color-overlay-dark: rgba(0, 0, 0, 0.7);
 
     /* Fonts */
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
-    --font-script: 'Great Vibes', cursive; /* For personal message */
+    --font-script: 'Great Vibes', cursive;
 
     /* Spacing & Transitions */
     --spacing-lg: 3.5rem;
@@ -31,7 +30,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Smooth scrolling untuk navigasi */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -39,7 +38,7 @@ body {
     line-height: 1.6;
     color: var(--color-text-light);
     background-color: var(--color-dark-primary);
-    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+    overflow-x: hidden;
 }
 
 /* --- HEADER & NAVIGATION --- */
@@ -47,14 +46,14 @@ header {
     background-color: var(--color-header-bg);
     padding: var(--spacing-sm) 0;
     text-align: center;
-    position: fixed; /* Header tetap di atas saat digulir */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px); /* Efek blur pada header */
-    -webkit-backdrop-filter: blur(5px); /* Untuk Safari */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     transition: background-color var(--transition-speed-medium) ease-in-out;
 }
 
@@ -121,9 +120,20 @@ nav ul li a:hover::after {
     transform: translateX(-50%) scaleX(1);
 }
 
-/* --- MAIN CONTENT --- */
+/* --- MAIN CONTENT & FADE-IN ANIMATION --- */
 main {
-    padding-top: 120px; /* Sesuaikan dengan tinggi header */
+    padding-top: 140px; /* Adjusted for header height */
+}
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--transition-speed-slow) ease-out, transform var(--transition-speed-slow) ease-out;
+}
+
+.fade-in-section.fade-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .section-title {
@@ -135,14 +145,6 @@ main {
     position: relative;
     padding-top: var(--spacing-lg);
     letter-spacing: 0.05em;
-    opacity: 0; /* Untuk fade-in on scroll */
-    transform: translateY(30px); /* Untuk slide-up on scroll */
-    transition: opacity var(--transition-speed-slow) ease-out, transform var(--transition-speed-slow) ease-out;
-}
-
-.section-title.fade-in {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .section-title::after {
@@ -161,7 +163,7 @@ main {
 .hero-section {
     position: relative;
     width: 100%;
-    height: 85vh; /* Mengambil 85% tinggi viewport */
+    height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,17 +183,17 @@ main {
 .hero-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Menjamin foto potret mengisi ruang */
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
-    filter: brightness(0.6) grayscale(0.2); /* Gelap dan sedikit moody */
-    transform: scale(1.05); /* Sedikit zoom untuk efek dinamis */
-    transition: filter var(--transition-speed-slow) ease-in-out, transform 20s ease-out; /* Animasi zoom lambat */
+    filter: brightness(0.6) grayscale(0.2);
+    transform: scale(1.05);
+    transition: filter var(--transition-speed-slow) ease-in-out; /* Removed transform from transition */
 }
 
+/* FIXED: Removed transform property to prevent conflict with JS parallax */
 .hero-section:hover .hero-image {
-    transform: scale(1);
     filter: brightness(0.7) grayscale(0);
 }
 
@@ -201,7 +203,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, var(--color-dark-primary) 10%, rgba(26, 26, 46, 0.2)); /* Gradien gelap di bagian bawah */
+    background: linear-gradient(to top, var(--color-dark-primary) 10%, rgba(26, 26, 46, 0.2));
     z-index: 1;
 }
 
@@ -220,7 +222,7 @@ main {
     font-size: 4rem;
     margin-bottom: 0.8rem;
     color: var(--color-accent-gold);
-    min-height: 4.5rem; /* Untuk menampung teks yang diketik */
+    min-height: 4.5rem;
 }
 
 .hero-text-content p {
@@ -237,30 +239,22 @@ main {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 kolom di desktop, menyesuaikan */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-md);
 }
 
 .gallery-item {
     position: relative;
-    height: 450px; /* Tinggi seragam untuk foto potret */
+    height: 450px;
     background-color: var(--color-dark-secondary);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
     cursor: pointer;
-    transition: transform var(--transition-speed-medium) ease-in-out, box-shadow var(--transition-speed-medium) ease-in-out;
-
-    /* Untuk animasi muncul */
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
+    transition: transform var(--transition-speed-medium) ease-in-out, box-shadow var(--transition-speed-medium) ease-in-out, opacity var(--transition-speed-slow) ease-out;
 }
 
-.gallery-item.fade-in {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
+/* Rely on the generic .fade-in-section for initial state */
 .gallery-item:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
@@ -269,15 +263,15 @@ main {
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Penting untuk foto potret */
+    object-fit: cover;
     display: block;
-    filter: brightness(0.7) grayscale(0.1); /* Sedikit gelap dan moody */
+    filter: brightness(0.7) grayscale(0.1);
     transition: filter var(--transition-speed-medium) ease-in-out, transform var(--transition-speed-medium) ease-in-out;
 }
 
 .gallery-item:hover img {
-    filter: brightness(0.5) grayscale(0.3); /* Lebih gelap saat hover */
-    transform: scale(1.05); /* Sedikit zoom saat hover */
+    filter: brightness(0.5) grayscale(0.3);
+    transform: scale(1.05);
 }
 
 .message-hover-overlay {
@@ -286,29 +280,29 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Overlay gelap transparan */
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0; /* Awalnya tersembunyi */
+    opacity: 0;
     transition: opacity var(--transition-speed-medium) ease-in-out;
-    pointer-events: none; /* Agar tidak memblokir event click pada gambar */
+    pointer-events: none;
 }
 
 .gallery-item:hover .message-hover-overlay {
-    opacity: 1; /* Muncul saat hover */
-    pointer-events: auto; /* Aktifkan pointer events saat muncul */
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .love-message-hover {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-style: italic;
-    color: var(--color-accent-rose); /* Warna teks pesan cinta */
+    color: var(--color-accent-rose);
     text-align: center;
     padding: var(--spacing-sm);
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-    transform: translateY(20px); /* Efek slide up saat muncul */
+    transform: translateY(20px);
     opacity: 0;
     transition: transform var(--transition-speed-medium) ease-out, opacity var(--transition-speed-medium) ease-out;
 }
@@ -318,8 +312,8 @@ main {
     opacity: 1;
 }
 
-/* --- ABOUT SECTION --- */
-.about-section {
+/* --- ABOUT & HEART MESSAGE SECTIONS --- */
+.about-section, .heart-message-section {
     max-width: 900px;
     margin: 0 auto var(--spacing-lg) auto;
     padding: var(--spacing-md);
@@ -346,103 +340,46 @@ main {
     color: var(--color-accent-gold);
     margin-top: var(--spacing-md);
     text-align: right;
-    display: block; /* Agar bisa diatur text-align */
+    display: block;
 }
 
-/* --- HEART MESSAGE SECTION --- */
 .heart-message-section {
-    max-width: 900px;
-    margin: 0 auto var(--spacing-lg) auto;
-    padding: var(--spacing-md);
-    background-color: var(--color-dark-primary); /* Lebih gelap untuk kontras */
-    border-radius: 10px;
+    background-color: var(--color-dark-primary);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    text-align: center;
     position: relative;
-    z-index: 1; /* Di atas elemen lain jika ada tumpang tindih */
+    z-index: 1;
 }
 
 .heart-message-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(135deg, var(--color-dark-primary) 0%, var(--color-dark-secondary) 100%);
-    opacity: 0.7; /* Sedikit transparan untuk efek 'velvet' */
+    opacity: 0.7;
     border-radius: 10px;
     z-index: -1;
 }
 
-.heart-message-section .message-content {
-    padding: var(--spacing-sm);
-}
-
 .heart-message-section .typed-message,
 .heart-message-section .final-paragraph {
-    font-family: var(--font-script); /* Font tulisan tangan */
+    font-family: var(--font-script);
     font-size: 1.8rem;
     line-height: 1.8;
     color: var(--color-accent-rose);
     text-align: center;
     margin-bottom: var(--spacing-sm);
-    text-shadow: 0 0 8px rgba(201, 167, 167, 0.3); /* Soft glow */
-    opacity: 0; /* Akan dianimasikan oleh JS */
-    min-height: 2.5em; /* Hindari lompatan layout saat typing */
+    text-shadow: 0 0 8px rgba(201, 167, 167, 0.3);
+    opacity: 0;
+    min-height: 2.5em;
 }
 
 .heart-message-section .final-paragraph {
-    font-size: 1.5rem; /* Sedikit lebih kecil dari typed message */
-    font-family: var(--font-body); /* Kembali ke font body */
+    font-size: 1.5rem;
+    font-family: var(--font-body);
     font-style: italic;
     color: var(--color-text-light);
     margin-top: var(--spacing-md);
     text-shadow: none;
-}
-
-
-/* --- MUSIC SECTION --- */
-.music-section {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto var(--spacing-lg) auto;
-    padding: var(--spacing-md);
-    background-color: var(--color-dark-secondary);
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-}
-
-.music-controls {
-    margin-top: var(--spacing-sm);
-}
-
-.control-button {
-    background-color: var(--color-accent-rose);
-    color: var(--color-dark-primary);
-    border: none;
-    padding: 0.8rem 1.8rem;
-    border-radius: 50px; /* Bentuk kapsul */
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: bold;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: background-color var(--transition-speed-fast) ease-in-out, transform var(--transition-speed-fast) ease-in-out, box-shadow var(--transition-speed-fast) ease-in-out;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.control-button:hover {
-    background-color: var(--color-accent-gold);
-    color: var(--color-dark-primary);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-}
-
-.control-button .icon {
-    font-size: 1.4rem;
-    line-height: 1;
 }
 
 /* --- FOOTER --- */
@@ -456,17 +393,15 @@ footer {
     margin-top: var(--spacing-lg);
 }
 
-/* --- LIGHTBOX (Modal Gallery) --- */
+/* --- LIGHTBOX --- */
 .lightbox {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 2000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: var(--color-overlay-dark); /* Dark translucent background */
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: var(--color-overlay-dark);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     opacity: 0;
@@ -474,7 +409,7 @@ footer {
 }
 
 .lightbox.open {
-    display: flex; /* Use flexbox to center content */
+    display: flex;
     justify-content: center;
     align-items: center;
     opacity: 1;
@@ -491,7 +426,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: scale(0.9); /* Start slightly smaller */
+    transform: scale(0.9);
     opacity: 0;
     transition: transform var(--transition-speed-medium) ease-out, opacity var(--transition-speed-medium) ease-out;
 }
@@ -519,19 +454,19 @@ footer {
 
 .lightbox-image-wrapper {
     max-width: 100%;
-    max-height: 70vh; /* Adjust as needed */
+    max-height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: var(--spacing-sm);
-    overflow: hidden; /* Ensure image fits */
+    overflow: hidden;
 }
 
 #lightbox-image {
     max-width: 100%;
     max-height: 100%;
     display: block;
-    object-fit: contain; /* Ensure full image is visible */
+    object-fit: contain;
     border-radius: 5px;
 }
 
@@ -553,10 +488,12 @@ footer {
     top: 50%;
     transform: translateY(-50%);
     padding: 0 var(--spacing-sm);
+    pointer-events: none; /* Let clicks pass through to nav buttons */
 }
 
 .nav-button {
-    background-color: rgba(201, 167, 167, 0.2); /* Translucent rose */
+    pointer-events: auto; /* Enable clicks on buttons */
+    background-color: rgba(201, 167, 167, 0.2);
     color: var(--color-accent-rose);
     border: 2px solid var(--color-accent-rose);
     border-radius: 50%;
@@ -567,8 +504,8 @@ footer {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: background-color var(--transition-speed-fast) ease-in-out, color var(--transition-speed-fast) ease-in-out, transform var(--transition-speed-fast) ease-in-out;
-    user-select: none; /* Prevent text selection */
+    transition: all var(--transition-speed-fast) ease-in-out;
+    user-select: none;
 }
 
 .nav-button:hover {
@@ -577,9 +514,9 @@ footer {
     transform: scale(1.1);
 }
 
-/* --- BACK TO TOP BUTTON --- */
-.back-to-top-btn {
-    display: none; /* Hidden by default */
+/* --- UTILITY BUTTONS --- */
+/* FIXED: Changed selector from .back-to-top-btn to #back-to-top */
+#back-to-top {
     position: fixed;
     bottom: var(--spacing-md);
     right: var(--spacing-md);
@@ -592,139 +529,87 @@ footer {
     font-size: 1.5rem;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    transition: opacity var(--transition-speed-medium) ease-in-out, transform var(--transition-speed-medium) ease-in-out;
     opacity: 0;
     z-index: 999;
-    display: flex; /* For centering content */
+    display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(0.8);
+    transition: opacity var(--transition-speed-medium) ease-in-out, transform var(--transition-speed-medium) ease-in-out;
 }
 
-.back-to-top-btn.show {
+#back-to-top.show {
     opacity: 1;
-    display: flex;
+    transform: scale(1);
 }
 
-.back-to-top-btn:hover {
-    transform: translateY(-3px) scale(1.05);
+#back-to-top:hover {
+    transform: scale(1.1);
     background-color: var(--color-accent-rose);
-    color: var(--color-text-light);
 }
 
+/* NEW: Music control button styles */
+#music-control-btn {
+    position: fixed;
+    bottom: var(--spacing-md);
+    left: var(--spacing-md);
+    background-color: var(--color-accent-rose);
+    color: var(--color-dark-primary);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    display: none; /* Initially hidden, shown by JS */
+    justify-content: center;
+    align-items: center;
+    transition: all var(--transition-speed-medium) ease-in-out;
+}
+
+#music-control-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--color-accent-gold);
+}
 
 /* --- RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
+    main {
+        padding-top: 180px; /* Adjust for taller header on mobile */
     }
-    header .subtitle {
-        font-size: 0.9rem;
-    }
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    nav ul li {
-        margin: 0;
-    }
-    nav ul li a {
-        padding: 0.3rem 0.5rem;
-        font-size: 1rem;
-    }
+    header h1 { font-size: 2rem; }
+    header .subtitle { font-size: 0.9rem; }
+    nav ul { flex-direction: column; gap: 0.5rem; }
+    nav ul li { margin: 0; }
+    nav ul li a { padding: 0.3rem 0.5rem; font-size: 1rem; }
 
-    .hero-section {
-        height: 70vh;
-    }
-    .hero-text-content h2 {
-        font-size: 2.5rem;
-        min-height: 3rem;
-    }
-    .hero-text-content p {
-        font-size: 1.1rem;
-    }
+    .hero-section { height: 70vh; }
+    .hero-text-content h2 { font-size: 2.5rem; min-height: 3rem; }
+    .hero-text-content p { font-size: 1.1rem; }
+    .section-title { font-size: 2.2rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item { height: 400px; }
+    .love-message-hover { font-size: 1.2rem; }
+    .about-section p, .heart-message-section p { text-align: left; font-size: 1rem; }
+    .heart-message-section .typed-message, .heart-message-section .final-paragraph { font-size: 1.5rem; }
+    
+    .lightbox-content { padding: var(--spacing-sm); }
+    .close-btn { font-size: 2.5rem; right: 15px; }
+    .lightbox-message { font-size: 1rem; }
+    .nav-button { width: 40px; height: 40px; font-size: 2rem; }
 
-    .section-title {
-        font-size: 2.2rem;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr; /* Satu kolom untuk mobile */
-    }
-
-    .gallery-item {
-        height: 400px;
-    }
-
-    .love-message-hover {
-        font-size: 1.2rem;
-    }
-
-    .about-section p, .heart-message-section p {
-        text-align: left; /* Lebih nyaman di mobile */
-        font-size: 1rem;
-    }
-    .heart-message-section .typed-message,
-    .heart-message-section .final-paragraph {
-        font-size: 1.5rem;
-    }
-
-    .lightbox-content {
-        max-width: 95%;
-        max-height: 95%;
-        padding: var(--spacing-sm);
-    }
-    .close-btn {
-        font-size: 2.5rem;
-        right: 15px;
-    }
-    .lightbox-message {
-        font-size: 1rem;
-    }
-    .nav-button {
-        width: 40px;
-        height: 40px;
-        font-size: 2rem;
-    }
-
-    .back-to-top-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
-    }
+    #back-to-top, #music-control-btn { width: 45px; height: 45px; }
 }
 
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.8rem;
-    }
-    .hero-section {
-        height: 60vh;
-    }
-    .hero-text-content h2 {
-        font-size: 2rem;
-        min-height: 2.5rem;
-    }
-    .hero-text-content p {
-        font-size: 0.9rem;
-    }
-    .section-title {
-        font-size: 1.8rem;
-    }
-    .gallery-item {
-        height: 350px;
-    }
-    .love-message-hover {
-        font-size: 1rem;
-    }
-    .heart-message-section .typed-message,
-    .heart-message-section .final-paragraph {
-        font-size: 1.2rem;
-    }
-    .control-button {
-        padding: 0.6rem 1.2rem;
-        font-size: 1rem;
-    }
-    .control-button .icon {
-        font-size: 1.2rem;
-    }
+    header h1 { font-size: 1.8rem; }
+    .hero-section { height: 60vh; }
+    .hero-text-content h2 { font-size: 2rem; min-height: 2.5rem; }
+    .hero-text-content p { font-size: 0.9rem; }
+    .section-title { font-size: 1.8rem; }
+    .gallery-item { height: 350px; }
+    .love-message-hover { font-size: 1rem; }
+    .heart-message-section .typed-message, .heart-message-section .final-paragraph { font-size: 1.2rem; }
 }
